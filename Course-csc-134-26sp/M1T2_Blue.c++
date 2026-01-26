@@ -8,6 +8,7 @@ Assumption: Sales tax is 8%
 */
 
 #include <iostream>
+#include <iomanip>
 using namespace std;
 // if you don't use namespace, type std:: cout evrey time instead of cout (alsp cin)
 
@@ -39,7 +40,8 @@ tax_amount = sub_total * tax_rate; // this much is ADDED to the bill
 // add tax and tips 
 total_price = sub_total + tip_amount +tax_amount; 
 
-// Present the output
+// Present the output with 2 decimal palces 
+cout << setprecision(2) << fixed; // remember to import <iomanip>
 cout << endl; 
 cout << "Your Order" << endl << "-----------------------------" << endl; 
 cout << num_books << "x" << book_name << "\t$" << book_price << endl;
