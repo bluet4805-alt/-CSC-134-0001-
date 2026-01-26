@@ -23,20 +23,29 @@ double tip_amount;
 double tax_amount;                    // $ of the actual tax
 double total_price;                   // subtotal + tip + tax       
 
+
 // Get user iuput 
 cout << "Welcome to the CSC 134 Book Store." << endl; 
 cout << "Today's Discount: " << book_name << endl; 
 cout << endl; 
 cout << "How many would you like? ";
 cin >> num_books; 
+cout << "Tip ammount? (min 0)? ";
+cin >> tip_amount; 
 
 // Do the calculations 
 sub_total = book_price * num_books; 
+tax_amount = sub_total * tax_rate; // this much is ADDED to the bill
+// add tax and tips 
+total_price = sub_total + tip_amount +tax_amount; 
 
 // Present the output
 cout << endl; 
 cout << "Your Order" << endl << "-----------------------------" << endl; 
 cout << num_books << "x" << book_name << "\t$" << book_price << endl;
 cout << "Subtotal: \t\t$" << sub_total << endl;  
+cout << "Tip: \t\t\t$" << tip_amount << endl;
+cout << "Tax: \t\t\t$" << tax_amount << endl; 
+cout << "-----------------------------" << endl; 
     return 0; // no errors
 }
