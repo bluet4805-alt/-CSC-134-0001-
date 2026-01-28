@@ -34,10 +34,21 @@ cout << "Crate Width? ";
 cin >> width; 
 cout << "Crate Height? ";
 cin >>  height; 
+
+
 // Part 3 -- Do the Calculations 
+volume = length * width * height;
+// Find the cost and the customer_price
+cost = volume * COST_PER_CUBIC_FOOT; 
+customer_price = volume * CHARGE_PER_CUBIC_FOOT; 
+profit = customer_price - cost; 
 
 // Part 4 -- Print the Output 
-
-
+cout << setprecision(2) << fixed; // 2 decimal places 
+cout << "==== CRATE INFO ====" << endl; 
+cout << "Volume is " << volume << " cubic feet. " << endl;
+cout << "Wholesale price is:$" << cost << endl; 
+cout << "Customer price is: $" << customer_price << endl; 
+cout << "Profit per crate:  $" << profit << endl; 
     return 0; 
 }
