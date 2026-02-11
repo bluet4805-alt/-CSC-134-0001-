@@ -15,5 +15,5 @@ int main () {
 
 cout << "Welcome to the Bank of Money!" << endl; 
 cout << "What is your name is your accout under?: " << endl; 
-cin >> 
+
 }
