@@ -15,7 +15,7 @@ int main() {
     int num_apples = 7;
     double cost_each = 0.25;
     
-    cout << "Welcome to the " << name << "Apples Farm!" << endl;
+    cout << "Welcome to " << name << "Apples Farm!" << endl;
 
     // User input 
     cout << "Please enter your name: "; 
