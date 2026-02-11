@@ -6,16 +6,24 @@
 #include <iostream> 
 using namespace std; 
 
-int main () (
-    // Apple sales program
+int main() {
+
+
+    // Apple sale program
     // Variables are like mailboxes
-    string name = "Blue"; 
+    string name = "Trinity's "; 
     int num_apples = 7;
     double cost_each = 0.25;
     
     cout << "Welcome to the " << name << "Apples Farm!" << endl;
-    cout << "There are" << num_apples << "apples in stock." << endl; 
-    cout << "They cost $" << cost_each << "each." endl;
+
+    // User input 
+    cout << "Please enter your name: "; 
+    cin >> name; 
+
+    cout << "Hello " << name << endl; 
+    cout << "There are " << num_apples << " apples in stock." << endl; 
+    cout << "They cost $" << cost_each << " each." << endl;
 
     // Find out the total price 
     double total_cost = num_apples * cost_each;
@@ -23,4 +31,4 @@ int main () (
     cout << endl; 
 
     return 0;
-)
+}
