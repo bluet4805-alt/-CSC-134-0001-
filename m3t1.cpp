@@ -36,4 +36,7 @@ area2 = length2 * width2;
     if (area2 > area1) {
         cout << "The second rectangle is larger." << endl;
     }
+    if (area1 == area2) {
+        cout << "They are the same size." << endl; 
+    }
 }
