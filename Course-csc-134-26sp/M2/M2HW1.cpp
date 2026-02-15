@@ -18,8 +18,10 @@ double balance, deposit, withdrawl, finalBalance;
 
 // User Input 
 cout << "Welcome to the Bank of Money!" << endl; 
-cout << "Please enter the name your accout is under: " << endl; 
+cout << "Please enter the first name that your account is under: " << endl; 
 cin >> name; 
+cout << endl; // line for spacing 
+cout << "Welcome " << name << "!" << endl; 
 cout << "Please enter your starting balance:$ ";
 cin >> balance;
 cout << "Perfect! How much would you like to deposit?:$ ";
@@ -31,11 +33,12 @@ cin >> withdrawl;
 finalBalance = balance + deposit - withdrawl;
 
 // Display
-cout << "Your Bank Info.";
 cout << endl;
-cout << "_______________________________";
+cout << "Your Bank Info:";
+cout << endl; 
+cout << "_____________________" << endl;
 cout << "Name on account: " << name << endl;
-cout << "Final Balance: $" <<finalBalance << endl;
+cout << "Final Balance: $" << finalBalance << endl;
 
 return 0;
 }
