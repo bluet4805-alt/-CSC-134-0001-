@@ -1,23 +1,25 @@
+// Gold 
 #include <iostream>
 #include <string> 
 using namespace std; 
 
 int main() {
     // Variables
-    string cheer = "Let's go "; // I did use youtube to get a clear understanding of how the "string" lines work 
-    string school = "FTCC";
-    string mascot = "Trojans";
+    string letsGo, school, team, cheerOne, cheerTwo; // I did use youtube to get a clear understanding of how the "string" lines work 
+    
+// Variables 
+letsGo = "Lets go ";
+school = "FTCC";
+team = "Trojans";
 
-    cout << endl;
+cheerOne = letsGo + school;
+cheerTwo = letsGo + team; 
 
-    // Output (Lets Go FTCC)
-cout << "--- Final Cheer ---" << endl; 
-cout << cheer << school << "!" << endl; 
-cout << cheer << school << "!" << endl; 
-cout << cheer << school << "!" << endl; 
-
-// Output (Let's go Trojans )
-cout << cheer << mascot << "!" << endl; 
+// Output 
+cout << cheerOne << endl; 
+cout << cheerOne << endl; 
+cout << cheerOne << endl; 
+cout << cheerTwo << endl; 
 
 return 0;
 
