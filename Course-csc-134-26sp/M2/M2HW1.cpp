@@ -15,6 +15,7 @@ int main () {
     // Variables
 string name;
 double balance, deposit, withdrawl, finalBalance; 
+int accountNum = 8392;
 
 // User Input 
 cout << "Welcome to the Bank of Money!" << endl; 
@@ -36,8 +37,9 @@ finalBalance = balance + deposit - withdrawl;
 cout << endl;
 cout << "Your Bank Info:";
 cout << endl; 
-cout << "_____________________" << endl;
+cout << "________________________" << endl;
 cout << "Name on account: " << name << endl;
+cout << "Account Number: " << accountNum << endl; 
 cout << "Final Balance: $" << finalBalance << endl;
 
 return 0;
