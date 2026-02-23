@@ -27,7 +27,7 @@ total = first + second;
 cout << "You rolled  " << first << " + " << second << " = " << total << endl; 
 
 // How did we do?
-if (total ==7 || total == 11) {
+if (total == 7 || total == 11) {
     result = "Win!";
 }
 else if (total == 2 || total == 3 || total == 12) {
