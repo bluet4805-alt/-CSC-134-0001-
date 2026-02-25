@@ -17,7 +17,7 @@ int main() {
 
     int choice;
     // starts the game
-    cout << "Farming Tails" << endl << endl;
+    cout << "Welcome to Farming Life Storymode! " << endl << endl;
     cout << "You are working in your cubical and realize that you want more from your life." << endl; //intro and something happens...
     cout << "You get a call from your mother saying that your grandfather had passed and is giving you his farm!" << endl; 
     cout << "You quit your job and make your way to the given address." << endl; 
@@ -40,7 +40,8 @@ int main() {
         do_choice_2();
     }
     else {
-        cout << "Grandpa's ghost disaproves and you are forever haunted by his disaproving frown." << endl; // This will prompt if there is an error 
+        cout << "You answer is not one of the options given." << endl; 
+        cout << "Grandpa's ghost disaproves and you are forever haunted by his disaproving frown." << endl; // This will prompt if there is an error
     }
     cout << "Game Over" << endl << endl; // I want this to prompt something more story related 
 
@@ -49,16 +50,21 @@ int main() {
 // List full functions of all choices at the bottom 
 void do_choice_1 () {
     cout << "As you make your way around the farm you find some tools laying around." << endl;
-    cout << " You see a Hammer, Axe, Watering can and Sword."
-    cout << "Which do you pick?"
+    cout << " You see a Hammer and a Sword"<< endl; 
+    cout << "Which do you pick?" << endl; 
      // I need add the choices code here 
+     // If they choose the sword I want them to wander the farm and enter a cave of dangerous slimes where they can decide weather to fight or run.
+     // If they choose the hammer then I want them to find a rundown barn and they can decide to fix it or not. (If they do then they are awarded with the ability to befriend animals and have them live in the barn)
 }
 void do_choice_2() {
     cout << "You make your way to the town and are greeted by Mayor Sam who claims to be your grandfater's best friend." << endl; 
     cout << "He tells you that he has a welcome gift for you" << endl; 
     cout << "He hands you a box holding some seeds" << endl; 
-    cout << "Do You: " << endl;
-    // I want the choices to be either be happy about the gift or angry that it wasnt something more interesting 
+    cout << "Which do you say? " << endl;
+ cout << "1. WoW! This is so thoughtful. Thank you so much!" << endl; 
+ cout << "2. SEEDS?! I JUST GOT HERE AND YOU ALREADY WANT ME TO WORK?!" << endl;
+ cout << "> ";
+
 }
 // Use the other choices in 1 or 2
 
