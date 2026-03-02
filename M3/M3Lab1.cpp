@@ -52,9 +52,12 @@ void do_choice_1 () {
     cout << "As you make your way around the farm you find some tools laying around." << endl;
     cout << " You see a Hammer and a Sword"<< endl; 
     cout << "Which do you pick?" << endl; 
-     // I need add the choices code here 
+     // I need add the choices code:
      // If they choose the sword I want them to wander the farm and enter a cave of dangerous slimes where they can decide weather to fight or run.
-     // If they choose the hammer then I want them to find a rundown barn and they can decide to fix it or not. (If they do then they are awarded with the ability to befriend animals and have them live in the barn)
+     // If they choose to run then they get lost in the cave and starve. If they defeat the slimes they are able to tame the others and now have a slime army. This also introduces carisma stats and the user is told they have +1 carisma 
+    
+     // If they choose the hammer then I want them to find a rundown barn and they can decide to fix it or not. 
+     // If they do then they are awarded with the ability to befriend animals and have them live in the barn. If not then they continue to explore the farm)
 }
 void do_choice_2() {
     cout << "You make your way to the town and are greeted by Mayor Sam who claims to be your grandfater's best friend." << endl; 
@@ -64,7 +67,17 @@ void do_choice_2() {
  cout << "1. WoW! This is so thoughtful. Thank you so much!" << endl; 
  cout << "2. SEEDS?! I JUST GOT HERE AND YOU ALREADY WANT ME TO WORK?!" << endl;
  cout << "> ";
-
+// I need to add more choice code
+ // If you thank Sam then you will gain access charisma stats and told that your carisma is +1.
+ // If you  choose the second option then Sam scoffs and says that you are ungrateful and the user is told they have gaied an ememy
+ // After a decision is made then the story continues as the user continues exploring the town. 
+ // As they look around they see a beach and a market and they are prompted to choose
+ // If they choose the beach then they meet a pirate captain who makes the user their second in command and the code ends
+ // If they choose the market then they are pulled into a modern shop where the owner notes that they are the new owners of the farm and tries to covimce the user to become business partners to help him take over the town for his greed.
+ // The user is prompted to choose to either help the shop owner or to refuse. 
+ // If they agree to help the shop owner then there is a 2 month timeskip and the once humble town is changed into a large city where the user is rich at the expense of the former towns people hate them forever and the code ends
+ // If they choose to not help the owner then he scoffs and lets you go. The townspeople overhear and the user gain +20 charisma and are invited to the town summer festival and the code ends
+ 
 }
 // Use the other choices in 1 or 2
 
