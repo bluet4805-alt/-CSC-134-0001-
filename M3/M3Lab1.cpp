@@ -65,15 +65,8 @@ void do_choice_1 () {
         cout << "> ";
         cin >> sub_choice; 
 
-        if (1== sub_choice) {
-            cout << "You wander into the cave and are ambushed by a group of giant slimes!" << endl; 
-            cout << "Do you:" << endl; 
-            cout << "1. Fight the slimes?" << endl; 
-            cout << "2. Run away?" << endl;
-            cout << "> ";
-            cin >> sub_choice;
 
-            if (1 == sub_choice); {
+             {
                 cout << "You defeat the giant slimes and in doing so you tame the remaining ones!" << endl; 
                 cout << "You now have a slime army!" << endl; 
                 cout <<" [SYSTEM]: +1 Charisma." << endl; 
@@ -96,7 +89,7 @@ void do_choice_1 () {
             }
         }
     }
-    
+}
     void do_choice_2() {
         int sub_choice; 
         cout << "You are greeted by Mayor Sam and he hands you a box of seeds." << endl; 
@@ -119,7 +112,8 @@ void do_choice_1 () {
         cout << "2. The Market?" << endl;
         cout << "> ";
         cin >> sub_choice; 
-        if (1 == sub_choice); {
+
+        if (1 == sub_choice) {
             cout << "A Pirate Captian makes his way to you and instantly approves of you" << endl; 
             cout << "[SYETEM]: You are now the first mate to the rugged crew." << endl; 
         } else if (2 == sub_choice) {
