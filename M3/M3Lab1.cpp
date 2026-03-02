@@ -1,16 +1,13 @@
 // M3Lab1
 // Blue
 //2-23-26
-
+// Thank you Youtube and Gemini for helping me remember what the functions do 
 #include <iostream>
 using namespace std; 
 
 // List Prototypes of all choices
-
 void do_choice_1();
 void do_choice_2();
-void do_choice_3();
-void do_choice_4();
 
 // main() is here
 int main() {
@@ -23,6 +20,7 @@ int main() {
     cout << "You quit your job and make your way to the given address." << endl; 
     cout << "When you arrive you realize how rundowm the farm is." << endl; 
     cout << "You also notice a small town in the distance." << endl; 
+
     // First Choice 
     cout << "What is your first decision?" << endl; 
     cout << "Do You: " << endl; 
@@ -41,44 +39,104 @@ int main() {
     }
     else {
         cout << "You answer is not one of the options given." << endl; 
-        cout << "Grandpa's ghost disaproves and you are forever haunted by his disaproving frown." << endl; // This will prompt if there is an error
+        cout << "Grandpa's ghost disaproves of your choice and you are forever haunted by his disaproving frown." << endl; // This will prompt if there is an error
     }
-    cout << "Game Over" << endl << endl; // I want this to prompt something more story related 
+    cout << "---Game Over---" << endl << endl; // I want this to prompt something more story related 
 
     return 0; // End of game 
 }
+
 // List full functions of all choices at the bottom 
 void do_choice_1 () {
+    int sub_choice; //I did need to watch youtube vids to understand this function 
     cout << "As you make your way around the farm you find some tools laying around." << endl;
     cout << " You see a Hammer and a Sword"<< endl; 
-    cout << "Which do you pick?" << endl; 
-     // I need add the choices code:
-     // If they choose the sword I want them to wander the farm and enter a cave of dangerous slimes where they can decide weather to fight or run.
-     // If they choose to run then they get lost in the cave and starve. If they defeat the slimes they are able to tame the others and now have a slime army. This also introduces carisma stats and the user is told they have +1 carisma 
-    
-     // If they choose the hammer then I want them to find a rundown barn and they can decide to fix it or not. 
-     // If they do then they are awarded with the ability to befriend animals and have them live in the barn. If not then they continue to explore the farm)
-}
-void do_choice_2() {
-    cout << "You make your way to the town and are greeted by Mayor Sam who claims to be your grandfater's best friend." << endl; 
-    cout << "He tells you that he has a welcome gift for you" << endl; 
-    cout << "He hands you a box holding some seeds" << endl; 
-    cout << "Which do you say? " << endl;
- cout << "1. WoW! This is so thoughtful. Thank you so much!" << endl; 
- cout << "2. SEEDS?! I JUST GOT HERE AND YOU ALREADY WANT ME TO WORK?!" << endl;
- cout << "> ";
-// I need to add more choice code
- // If you thank Sam then you will gain access charisma stats and told that your carisma is +1.
- // If you  choose the second option then Sam scoffs and says that you are ungrateful and the user is told they have gaied an ememy
- // After a decision is made then the story continues as the user continues exploring the town. 
- // As they look around they see a beach and a market and they are prompted to choose
- // If they choose the beach then they meet a pirate captain who makes the user their second in command and the code ends
- // If they choose the market then they are pulled into a modern shop where the owner notes that they are the new owners of the farm and tries to covimce the user to become business partners to help him take over the town for his greed.
- // The user is prompted to choose to either help the shop owner or to refuse. 
- // If they agree to help the shop owner then there is a 2 month timeskip and the once humble town is changed into a large city where the user is rich at the expense of the former towns people hate them forever and the code ends
- // If they choose to not help the owner then he scoffs and lets you go. The townspeople overhear and the user gain +20 charisma and are invited to the town summer festival and the code ends
- 
-}
-// Use the other choices in 1 or 2
+    cout << "Do you:" << endl; 
+    cout << "1. Pick up the Sword?" << endl; 
+    cout << "2. Pick up the Hammer?" << endl;
+    cout << "> ";
+    cin >> sub_choice; 
 
-// We will do a short story with around 3-4 choiced events 
+    if (1== sub_choice) {
+        cout << "You wander into a cave of dangerous slimes!" << endl; 
+        cout << "Do you:" << endl; 
+        cout << "1. Fight the slimes?" << endl;
+        cout << "2. Run away?" << endl; 
+        cout << "> ";
+        cin >> sub_choice; 
+
+        if (1== sub_choice) {
+            cout << "You wander into the cave and are ambushed by a group of giant slimes!" << endl; 
+            cout << "Do you:" << endl; 
+            cout << "1. Fight the slimes?" << endl; 
+            cout << "2. Run away?" << endl;
+            cout << "> ";
+            cin >> sub_choice;
+
+            if (1 == sub_choice); {
+                cout << "You defeat the giant slimes and in doing so you tame the remaining ones!" << endl; 
+                cout << "You now have a slime army!" << endl; 
+                cout <<" [SYSTEM]: +1 Charisma." << endl; 
+            } else {
+                cout << "You get lost in the cave and starve. OH NO!" << endl; 
+            }
+        }
+        else if (2 == sub_choice) {
+            cout << "You find a rundown barn. Do You: " << endl; 
+            cout << "1. Fix the barn?" << endl; 
+            cout << "2. Keep exploring the farm?" << endl; 
+            cout << "> ";
+            cin >> sub_choice; 
+            if (1 == sub_choice) {
+                cout << "The barn is fixed!" << endl; 
+                cout << "Animals begin to move in and become your friend." << endl; 
+                cout << "[SYSTEM: +8 Charisma]" << endl; 
+            } else {
+                cout << "You leave the barn and continue wandering the land." << endl; 
+            }
+        }
+    }
+    
+    void do_choice_2() {
+        int sub_choice; 
+        cout << "You are greeted by Mayor Sam and he hands you a box of seeds." << endl; 
+        cout << "How do you reply:" << endl; 
+        cout << "1. 'WoW! This is so thoughtful. Thank you so much!'" << endl; 
+        cout << "2. 'SEEDS?! I JUST GOT HERE AND YOU EXPECT ME TO ALREADY START WORKING ?!'" << endl; 
+        cout << "> "; 
+        cin >> sub_choice; 
+
+        if (1 == sub_choice) {
+            cout << "Sam beams. [SYSTEM]: +3 Charisma." << endl; 
+        } else {
+            cout << "Sam storms off mumbling a threatening remark." << endl; 
+            cout << "[SYSTEM]: You have gained an enemy.  -3 Charisma" << endl; 
+        }
+        cout << "You look around the town and notice two paths." << endl; 
+        cout << "One leads to the town market and the other to the beach." << endl; 
+        cout << "Do you go to:" << endl; 
+        cout << "1. The Beach?" << endl; 
+        cout << "2. The Market?" << endl;
+        cout << "> ";
+        cin >> sub_choice; 
+        if (1 == sub_choice); {
+            cout << "A Pirate Captian makes his way to you and instantly approves of you" << endl; 
+            cout << "[SYETEM]: You are now the first mate to the rugged crew." << endl; 
+        } else if (2 == sub_choice) {
+            cout << "A greedy shop owner pulls you into his booth and asks you to help him take over the town." << endl; 
+            cout << "Do You:" << endl; 
+            cout << "1. Agree to help him?" << endl; 
+            cout << "2. Refuse his offer?" << endl; 
+            cout << "> ";
+            cin >> sub_choice;
+            if (1 == sub_choice) {
+                cout << "You are rich but, the town has become a dystopian society" << endl; 
+                cout << "You sit alone in your cold and empty mansion hiding because the townspeople seek revenge." << endl; 
+            } else{
+                cout << "The townspeople overhear and invite you the guest of honor at their summer fesival!" << endl;
+                cout << "They pitch in to help fix up the farm and you begin to enjoy your new farm life." << endl; 
+                cout << "[SYSTEM]: +50 Charisma and +$40,000,000 from the success of your farm" << endl;  
+            }
+        }
+    }
+// I could eventually have it keep track of different stats such as combat and charisma.
