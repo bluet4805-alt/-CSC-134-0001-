@@ -18,7 +18,7 @@ int main() {
     cout << "You are working in your cubical and realize that you want more from your life." << endl; //intro and something happens...
     cout << "You get a call from your mother saying that your grandfather had passed and is giving you his farm!" << endl; 
     cout << "You quit your job and make your way to the given address." << endl; 
-    cout << "When you arrive you realize how rundowm the farm is." << endl; 
+    cout << "When you arrive you realize how rundown the farm is." << endl; 
     cout << "You also notice a small town in the distance." << endl; 
 
     // First Choice 
@@ -64,17 +64,16 @@ void do_choice_1 () {
         cout << "2. Run away?" << endl; 
         cout << "> ";
         cin >> sub_choice; 
-
-
-             {
-                cout << "You defeat the giant slimes and in doing so you tame the remaining ones!" << endl; 
-                cout << "You now have a slime army!" << endl; 
-                cout <<" [SYSTEM]: +1 Charisma." << endl; 
-            } else {
-                cout << "You get lost in the cave and starve. OH NO!" << endl; 
-            }
+        // resolve the fight/run decision
+        if (1 == sub_choice) {
+            cout << "You defeat the giant slimes and in doing so you tame the remaining ones!" << endl; 
+            cout << "You now have a slime army!" << endl; 
+            cout <<" [SYSTEM]: +1 Charisma." << endl; 
+        } else {
+            cout << "You get lost in the cave and starve. OH NO!" << endl; 
         }
-        else if (2 == sub_choice) {
+    }
+    else if (2 == sub_choice) {
             cout << "You find a rundown barn. Do You: " << endl; 
             cout << "1. Fix the barn?" << endl; 
             cout << "2. Keep exploring the farm?" << endl; 
@@ -88,7 +87,6 @@ void do_choice_1 () {
                 cout << "You leave the barn and continue wandering the land." << endl; 
             }
         }
-    }
 }
     void do_choice_2() {
         int sub_choice; 
@@ -115,7 +113,7 @@ void do_choice_1 () {
 
         if (1 == sub_choice) {
             cout << "A Pirate Captian makes his way to you and instantly approves of you" << endl; 
-            cout << "[SYETEM]: You are now the first mate to the rugged crew." << endl; 
+            cout << "[SYSTEM]: You are now the first mate to the rugged crew." << endl; 
         } else if (2 == sub_choice) {
             cout << "A greedy shop owner pulls you into his booth and asks you to help him take over the town." << endl; 
             cout << "Do You:" << endl; 
