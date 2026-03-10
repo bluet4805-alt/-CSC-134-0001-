@@ -1,5 +1,7 @@
 // M3Lab1
 // Blue
+// Goal: Choose your own adventure.
+// Question 3
 //2-23-26
 // Thank you Youtube and Gemini for helping me remember what the functions do 
 #include <iostream>

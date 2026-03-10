@@ -2,6 +2,7 @@
 // M3HW1 - Gold 
 // Blue 
 // 3-2-26
+// Goal: Simple chat bot
 
 #include <iostream>
 #include <string>

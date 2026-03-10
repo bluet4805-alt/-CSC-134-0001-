@@ -1,56 +1,66 @@
 /*
 CSC 134
-M2T2 - Receipt calculator 
+M3HW1- Question 2 
+Goal: Calculating a recept with conditional tips
 Blue 
-1-26-26
-Goal: A correct looking recept that handles sales tax. 
-Assumption: Sales tax is 8% 
+3-4-26
+Gold 
 */
 
 #include <iostream>
 #include <iomanip>
+#include <string>
+
 using namespace std;
-// if you don't use namespace, type std:: cout evrey time instead of cout (alsp cin)
 
 int main () {
-    // We are making a recept printer for a bookstore 
-// Declare all variables 
-string book_name = "Books R Us      "; // change to anything 
-int num_books;                        // how many they buy 
-double book_price = 5.99;             // $5.99
-double sub_total;                     // price before tax/tips
-double tax_rate = 0.08;               // 8% is 8/100 ("per cent")
-double tip_amount;
-double tax_amount;                    // $ of the actual tax
-double total_price;                   // subtotal + tip + tax       
+    // Declaring variables
+    double meal_price;
+    int order_type; // 1 for dine in and 2 for takeaway
+    double tax_rate = 0.08;
+    double tax_amount; 
+    double tip_amount = 0.0; // I asked google gemini to explane the functions of the code and it recomended to make the tip ammount default to 0
+    double total_price; 
 
+    // User input
+    cout << "Welcome to the CSC Restaurant!" << endl;
+    cout << "Please enter the price of the meal ($): ";
+    cin >> meal_price; 
 
-// Get user iuput 
-cout << "Welcome to the CSC 134 Book Store." << endl; 
-cout << "Today's Discount: " << book_name << endl; 
-cout << endl; 
-cout << "How many would you like? ";
-cin >> num_books; 
-cout << "Tip ammount? (min 0)? ";
-cin >> tip_amount; 
+    cout << "Is the order dine in or takeaway?" << endl;
+    cout << "Please enter 1 if the order is dine in and 2 if it is a takeaway." << endl; 
+    cin >> order_type; 
 
-// Do the calculations 
-sub_total = book_price * num_books; 
-tax_amount = sub_total * tax_rate; // this much is ADDED to the bill
-// add tax and tips 
-total_price = sub_total + tip_amount +tax_amount; 
+    // Do the calculations 
+    // Calculating tax
+    tax_amount = meal_price * tax_rate; 
 
-// Present the output with 2 decimal palces 
-cout << setprecision(2) << fixed; // remember to import <iomanip>
-cout << endl; 
-cout << "Your Order" << endl << "-----------------------------" << endl; 
-cout << num_books << "x" << book_name << "\t$" << book_price << endl;
-cout << "Subtotal: \t\t$" << sub_total << endl;  
-cout << "Tip: \t\t\t$" << tip_amount << endl;
-cout << "Tax: \t\t\t$" << tax_amount << endl; 
-cout << "-----------------------------" << endl; 
-cout << "Total: \t\t\t$" << total_price << endl; 
-cout << "THANK YOU COME AGAIN!!" << endl; 
+    // Path for conditional tip (15%)
+    if (order_type == 1) {
+        tip_amount = meal_price * 0.15;
+    } else {
+        tip_amount = 0.0; // No takeaway tip
+    }
+    total_price = meal_price + tax_amount + tip_amount;
 
-    return 0; // no errors
+    // Present the output 
+    // I used youtube and gemini to make sure my functions were correct
+    cout << setprecision(2) << fixed; // ($0.00)
+    cout << endl; 
+    cout << "Your Recept" << endl; 
+    cout << "-------------------------------- " << endl;
+    cout << "Meal Price: \t\t$" << meal_price << endl; 
+    cout << "Tax (8%): \t\t$" << tax_amount << endl; 
+
+    //Dine in tip
+    if (order_type == 1) {
+        cout << "Tip (15%): \t\t$" << tip_amount << endl; 
+    } else {
+        cout << "Tip: \t\t\t$0.00 (Takeaway)" << endl; 
+    }
+    cout << "-------------------------------------- " << endl;
+    cout << "Total Amount Due: \t$" << total_price << endl; 
+    cout << "THANK YOU! PLEASE COME AGAIN!!" << endl; 
+
+    return 0;
 }
