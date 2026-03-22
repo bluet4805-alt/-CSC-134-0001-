@@ -11,15 +11,19 @@ int main () {
     int tableNum; 
     int counter = 1; 
     int final; 
-    // Ask for a number
-    cout << "Enter a number from 1 to 12: ";
+    // Ask for number 
+    cout << "Please enter a number from 1-12: ";
     cin >> tableNum; 
-    //Loop
+    // Validation Loop
+    while (tableNum < 1 || tableNum > 12) { // I used google to understand true/false functions and I used the || function
+        cout << "Input is not valid. Please enter a number from 1 to 12: ";
+        cin >> tableNum;
+    }
+    // Loop
     while (counter <= 12) {
-        final = tableNum * counter; 
-        cout << tableNum << " times " << counter << " is " << final << "." << endl;
-        // Function moves to the next number 
+        final = tableNum * counter;
+        cout << tableNum << " times " << counter << " is " << final << "." << endl; 
         counter ++;
-    } 
+    }
     return 0;
 }
