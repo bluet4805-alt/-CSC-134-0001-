@@ -7,13 +7,19 @@
 #include <iostream>
 using namespace std;
 int main () {
-    //Variables for the table 
-    int tableNum = 5; 
+    //Variables
+    int tableNum; 
     int counter = 1; 
-    // Loop 
+    int final; 
+    // Ask for a number
+    cout << "Enter a number from 1 to 12: ";
+    cin >> tableNum; 
+    //Loop
     while (counter <= 12) {
-        cout << tableNum << " times " << counter << " is " << (tableNum * counter) << "." << endl; 
-        counter ++; // I looked on Youtube for examples of how to use the ++ function 
-    }
+        final = tableNum * counter; 
+        cout << tableNum << " times " << counter << " is " << final << "." << endl;
+        // Function moves to the next number 
+        counter ++;
+    } 
     return 0;
 }
