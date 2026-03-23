@@ -16,12 +16,16 @@ int main () {
     cout << "Please Enter a Number from 1 to 12: ";
     cin >> tableNum;
 
-    //Loop
-    while (counter <=12) {
+    // Validation Loop 
+    while (tableNum < 1 || tableNum > 12) { // (The || helps with true/false )
+        cout << "Input is not valid. Please enter a number from 1 to 12: ";
+        cin >> tableNum; 
+    }
+
+    // Loop 
+    while (counter <= 12) {
         final = tableNum * counter; 
         cout << tableNum << " times " << counter << " is " << final << "." << endl; 
-
-        // This function moves to the nect number 
         counter ++; 
     }
     return 0;
