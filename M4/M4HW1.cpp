@@ -8,12 +8,21 @@
 using namespace std;
 int main () {
     //Variables
-    int tableNum = 5; 
-    int counter =1; 
+    int tableNum; 
+    int counter =1;
+    int final; 
+    
+    // Ask for a number
+    cout << "Please Enter a Number from 1 to 12: ";
+    cin >> tableNum;
+
     //Loop
     while (counter <=12) {
-        cout << tableNum << " times " << counter << " is " << (tableNum * counter) << "." <<endl; 
-        counter ++; // I looked on youtube for other ways to utilize the ++ funstion 
+        final = tableNum * counter; 
+        cout << tableNum << " times " << counter << " is " << final << "." << endl; 
+
+        // This function moves to the nect number 
+        counter ++; 
     }
     return 0;
 }
