@@ -1,0 +1,3 @@
+/* 
+1. I began with giving Claude a rundown of the adventure assignment. 
+2. I gave it both examples from the modules. */
