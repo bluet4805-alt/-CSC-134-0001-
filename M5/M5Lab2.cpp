@@ -62,7 +62,7 @@ double getWidth  () {
 
 double getArea (double length, double width) {
    double area = (length * width); 
-   cout << " The area of the rectangle is: " << area << endl; 
+   cout << "The area of the rectangle is: " << area << endl; 
    return area; 
    cout << " The area of the rectangle is " << displayData  << endl; 
 }
