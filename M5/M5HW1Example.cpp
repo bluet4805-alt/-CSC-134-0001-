@@ -41,7 +41,7 @@ int main() {
         }
         else {
             // Instead of ending the game, we clear the error and loop back
-            cout << "\n[ERROR]: That is not a valid option." << endl;
+            cout << "[SYSTEM] You input is invalid." << endl;
             cout << "Grandpa's ghost is watching... try again!" << endl;
             
             cin.clear();           // Resets the input flag if they typed a letter
