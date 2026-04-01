@@ -1,3 +1,4 @@
 /* 
-1. I began with giving Claude a rundown of the adventure assignment. 
-2. I gave it both examples from the modules. */
+1. I began with giving Gemini both of the example codes as well as my original Choose Your Own Adventure story 
+2. I then gave it a short overview of the purpose of the code  
+*/
