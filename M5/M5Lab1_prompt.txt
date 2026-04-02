@@ -1,4 +1,11 @@
 /* 
 1. I began with giving Gemini both of the example codes as well as my original Choose Your Own Adventure story 
-2. I then gave it a short overview of the purpose of the code  
+2. I then gave it a short overview of the purpose of the code. 
+3. I spent most of my time having Gemini explane to me parts of the example codes.
+4. It also suggested functions that could make the code run more smoothly. 
+5. I then gave it a retelling of my Choose Your Own Adventure story because I wanted to shorten how much of the code I had to retype.
+6. As I began to type the new code I asked for clarification on functions I had seen in the examples as I used them in my new code
+7. This finished part 1
+8. I then began to code part 2 and occasionly ask for feedback on if I was using the most effective funstions
+9. Towards the end I asked Gemini to help me come up with new funtions that will fit the critera of the final part of the assignment and it gave me a youtube video explaning the functions it suggested.
 */
