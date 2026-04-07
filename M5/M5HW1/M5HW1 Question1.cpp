@@ -2,7 +2,7 @@
 // M5HW1
 // Blue
 // 4-1-26
-// Question 1
+// Question 1 - Calculates the ave rainfall for 3 months
 // Gold 
 
 // I originally used the starter code to do this assignment before I began to play with other layouts and found this one helped me understand the process better 
