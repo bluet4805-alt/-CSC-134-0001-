@@ -2,16 +2,18 @@
 // M5HW1
 // Blue
 // 4-1-26
+// Question 1
+// Gold 
 
 // I originally used the starter code to do this assignment before I began to play with other layouts and found this one helped me understand the process better 
 #include <iostream>
 #include <string> 
 #include <iomanip> // I had looked into the setprecision function on a previous assignment and I wanted to play around with it for this one.
 // I did use youtube and google to help me make some notes about its benefits
-using namespace; 
+using namespace std;
 
 // Prototype
-void question(); 
+void question1(); 
 
 int main () {
   question1(); 
@@ -25,22 +27,22 @@ void question1 () {
 
     // Get user input 
     cout << "Please enter a Month: "; 
-    cin >> month1
-    cout << "Now enter rainfall for " << month1 << ": ";
+    cin >> month1;
+    cout << "Now enter the number of rain in inches for " << month1 << ": ";
     cin >> rain1; 
 
-    cout << "Please enter a  second Month: ";
+    cout << "Please enter a second Month: ";
     cin >> month2; 
-    cout << "Now enter rainfall for " << month2 << ": "; 
+    cout << "Now enter the number of rain in inches for " << month2 << ": "; 
     cin >> rain2; 
     
     cout << "Please enter a third month: "; 
     cin >> month3; 
-    cout << "Now enter rainfall for " << month3 << ": ";
+    cout << "Now enter the number of rain in inches for " << month3 << ": ";
     cin >> rain3; 
 
     // Calculate the average 
-    average = (rain1 + rain2 + rain3) 3.0; 
+    average = (rain1 + rain2 + rain3) / 3.0; 
 
     // Display an output with 2 decimal places 
     cout << fixed << setprecision (2); 
