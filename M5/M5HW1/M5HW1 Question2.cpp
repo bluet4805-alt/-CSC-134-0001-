@@ -17,6 +17,7 @@ void question2 ();
 // main
 int main() {
     // I want to call them one-by-one 
+    // question1(); 
     question2();
 
     return 0; 
@@ -52,3 +53,4 @@ void question2 () {
         cout << "The volume of the block is: " << volume << endl; 
     }
 }
+
