@@ -67,7 +67,7 @@ void question4 () {
             cout << "Now enter the height: ";
             cin >> height; 
             if (base < 0 || height < 0) {
-                cout << "Please ensure only positive numbers are entered for the base and height values" << endl;
+                cout << "Only enter positive values for base and height." << endl;
             } else {
                 area = base * height * 0.5;
                 cout << "\nThe area is " << area << endl;
