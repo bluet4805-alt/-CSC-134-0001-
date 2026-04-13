@@ -27,4 +27,13 @@ int main() {
     cout << "Over " << SIZE << " days"<< endl; 
     cout << "Total cars: " << sum << endl; 
     cout << "Average:    " << average << endl; 
+
+    // Extra: Simple chart bar
+    const int SCALE = 1; // 1 bar = 1 car
+    for (int i = 0 ; i < SIZE; i++) {
+        cout << "DAY " << (i+1) << " | "; 
+        for (int b = 0; b < cars [i]/SCALE; b++)
+            cout << "█";
+        cout << " " << cars[i] << "\n";
+    }
 }
