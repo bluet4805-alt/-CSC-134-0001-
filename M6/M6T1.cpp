@@ -1,5 +1,5 @@
 // M6T1- Basic Array 
-// Blue 
+// Blue  
 // 4-13-26
 
 #include <iostream>
