@@ -19,15 +19,29 @@ char fireShot(vector<char>& mag);
 int main() {
     vector<char> magazine;   // no size yet — grows as needed
 
-    // 'S' = slime, 'W' = water
-    magazine.push_back('S');
-    magazine.push_back('W');
-    magazine.push_back('S');
-    // ... and so on
-
+    // Now lets test it 
+    int slime = 3; 
+    int water = 2; 
+    loadMagazine(magazine, slime, water); 
     // How full is it? Just ask.
-    cout << magazine.size();
-}
+    cout << "Mag Size: " << magazine.size();
+    // shows what us loaded
+    displayMagazine(magazine); 
+
+    // Fire a shot
+    if (!magazine.empty()) {
+        char s = fireShot(magazine);
+        cout << "You fired: " << s << endl; 
+    }
+    // List again after the shot
+    displayMagazine(magazine); 
+    // What else is needed: 
+    // Takes turn, dealer and player alternate 
+    // Hit points (-1 HP from slime)
+    // Maybe Items 
+    // Each round changes what's loaded?
+}    
+
 
 // Full Functions go here
 void loadMagazine(vector<char>& mag,
@@ -42,14 +56,6 @@ void loadMagazine(vector<char>& mag,
     mt19937 gen(rd());
     shuffle(mag.begin(), mag.end(), gen);
 
-    // Example of how to use fireShot()
-    /*
-    // Calling code can ask before firing:
-    if (!mag.empty()) {
-        char s = fireShot(mag);
-        // ...
-    }
-    */
 }
 
 void displayMagazine(const vector<char>& mag) {
@@ -61,7 +67,7 @@ void displayMagazine(const vector<char>& mag) {
         else               w++;
     }
 
-    cout << "Magazine: " << mag.size()
+    cout << " Magazine: " << mag.size()
          << " remaining ("
          << s << " slime, "
          << w << " water)\n";
