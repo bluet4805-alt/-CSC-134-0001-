@@ -1,3 +1,13 @@
+// Gemini Displays an apple 
+// I gave Gemini my requirements of : 
+
+// Image must be at least 100×100 pixels
+// Must use `ofstream` to write to a `.ppm` file
+// Must use nested loops to generate pixel data
+// Must compile and run without errors
+// Output image must be viewable
+// I want the image to be an apple 
+
 #include <iostream>
 #include <fstream>
 #include <cmath>
