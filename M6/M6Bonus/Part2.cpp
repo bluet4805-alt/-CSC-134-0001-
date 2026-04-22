@@ -1,55 +1,69 @@
+// Emoji checker board 
 #include <iostream>
 #include <fstream>
 #include <cmath>
 
 using namespace std;
 
+const int WIDTH = 800;
+const int HEIGHT = 800;
+const int CHECK_SIZE = 100;
+
+struct Color {
+    int r, g, b;
+};
+
+// Helper function to check if a point is inside a circle
+bool isInsideCircle(int x, int y, int cx, int cy, int radius) {
+    return (pow(x - cx, 2) + pow(y - cy, 2)) <= pow(radius, 2);
+}
+
 int main() {
-    // 1. Open an ofstream to 'gradient.ppm'
-    ofstream outFile("gradient.ppm");
+    ofstream img("emoji_checkerboard.ppm");
+    img << "P3" << endl; // PPM Magic Number
+    img << WIDTH << " " << HEIGHT << endl;
+    img << "255" << endl; // Max color value
 
-    const int width = 100;
-    const int height = 100;
+    for (int y = 0; y < HEIGHT; ++y) {
+        for (int x = 0; x < WIDTH; ++x) {
+            Color pixel;
 
-    [span_1](start_span)// 2. Write the PPM header (P3, dimensions, max color)[span_1](end_span)
-    outFile << "P3" << endl;
-    outFile << width << " " << height << endl;
-    outFile << "255" << endl;
-
-    [span_2](start_span)[span_3](start_span)// 3. Nested loops to generate pixel data[span_2](end_span)[span_3](end_span)
-    for (int y = 0; y < height; y++) {        // Row loop
-        for (int x = 0; x < width; x++) {    // Column loop
-            
-            // Calculate a ratio from 0.0 to 1.0 based on x-position.
-            // Because you want ROYGBIV from Right to Left, 
-            // x=99 will be Red and x=0 will be Violet.
-            float ratio = (float)x / (width - 1);
-
-            int r = 0, g = 0, b = 0;
-
-            // Simple Multi-stage Gradient Logic for ROYGBIV
-            if (ratio < 0.16) { // Violet to Indigo
-                r = 148; g = 0; b = 211 + (int)(ratio * 6 * 44);
-            } else if (ratio < 0.33) { // Indigo to Blue
-                r = 148 - (int)((ratio-0.16) * 6 * 148); g = 0; b = 255;
-            } else if (ratio < 0.50) { // Blue to Green
-                r = 0; g = (int)((ratio-0.33) * 6 * 255); b = 255 - (int)((ratio-0.33) * 6 * 255);
-            } else if (ratio < 0.66) { // Green to Yellow
-                r = (int)((ratio-0.50) * 6 * 255); g = 255; b = 0;
-            } else if (ratio < 0.83) { // Yellow to Orange
-                r = 255; g = 255 - (int)((ratio-0.66) * 6 * 90); b = 0;
-            } else { // Orange to Red
-                r = 255; g = 165 - (int)((ratio-0.83) * 6 * 165); b = 0;
+            // 1. Create Checkerboard Background (Light/Dark Grey)
+            if ((x / CHECK_SIZE + y / CHECK_SIZE) % 2 == 0) {
+                pixel = {200, 200, 200};
+            } else {
+                pixel = {150, 150, 150};
             }
 
-            [span_4](start_span)// Write RGB values to file[span_4](end_span)
-            outFile << r << " " << g << " " << b << "  ";
+            // 2. Draw Laughing Emoji (Yellow Circle)
+            int centerX = WIDTH / 2;
+            int centerY = HEIGHT / 2;
+            int headRadius = 300;
+
+            if (isInsideCircle(x, y, centerX, centerY, headRadius)) {
+                pixel = {255, 204, 0}; // Yellow face
+
+                // Eyes (Squinting "> <" style for laughing)
+                // Left Eye
+                if (abs((y - (centerY - 80)) + (x - (centerX - 120))) < 10 && x < centerX - 80 && x > centerX - 160 && y < centerY - 40 && y > centerY - 120) pixel = {102, 51, 0};
+                if (abs((y - (centerY - 80)) - (x - (centerX - 120))) < 10 && x < centerX - 80 && x > centerX - 160 && y < centerY - 40 && y > centerY - 120) pixel = {102, 51, 0};
+                
+                // Right Eye
+                if (abs((y - (centerY - 80)) + (x - (centerX + 120))) < 10 && x > centerX + 80 && x < centerX + 160 && y < centerY - 40 && y > centerY - 120) pixel = {102, 51, 0};
+                if (abs((y - (centerY - 80)) - (x - (centerX + 120))) < 10 && x > centerX + 80 && x < centerX + 160 && y < centerY - 40 && y > centerY - 120) pixel = {102, 51, 0};
+
+                // Mouth (Big Open Semi-circle)
+                if (isInsideCircle(x, y, centerX, centerY + 50, 150) && y > centerY + 50) {
+                    pixel = {255, 255, 255}; // White teeth/mouth
+                }
+            }
+
+            img << pixel.r << " " << pixel.g << " " << pixel.b << " ";
         }
-        outFile << endl; 
+        img << endl;
     }
 
-    outFile.close();
-    cout << "Rainbow gradient 'gradient.ppm' generated!" << endl;
-
+    img.close();
+    cout << "Image generated: emoji_checkerboard.ppm" << endl;
     return 0;
 }
