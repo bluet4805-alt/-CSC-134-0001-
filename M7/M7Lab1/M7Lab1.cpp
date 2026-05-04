@@ -1,218 +1,168 @@
+// M7Lab1
+// Blue 
+// 5-4-26
+// I used differnt codes written by gemini
+// until I found one that was the least messy 
+// easy to read and follow allong 
+
+
 #include <iostream>
 #include <vector>
 #include <random>
 #include <ctime>
-#include <cstring>
-#include <queue>
-#include <unordered_map>
-#include <limits>
 #include <algorithm>
+#include <map>
+#include <queue>
 #include <string>
 
 using namespace std;
 
-// --- Direction Handling ---
+// --- 1. CONFIGURATION & DIRECTIONS ---
+enum Direction { NORTH = 1, SOUTH = 2, EAST = 4, WEST = 8 };
 
-enum Direction {
-    NORTH = 1,
-    SOUTH = 2,
-    EAST = 4,
-    WEST = 8
+// Maps directions to coordinate changes {x, y}
+const pair<int, int> OFFSETS[] = {
+    {0, 0}, {0, -1}, {0, 1}, {0, 0}, {1, 0}, {0, 0}, {0, 0}, {0, 0}, {-1, 0}
 };
 
-const std::pair<int, int> DIRECTION_OFFSETS[] = {
-    {0, 0},     // Placeholder 0
-    {0, -1},    // NORTH
-    {0, 1},     // SOUTH
-    {0, 0},     // Placeholder 3
-    {1, 0},     // EAST
-    {0, 0},     // Placeholder 5-7
-    {0, 0},
-    {0, 0},
-    {-1, 0}     // WEST
+const Direction OPPOSITE[] = {
+    (Direction)0, SOUTH, NORTH, (Direction)0, WEST, (Direction)0, (Direction)0, (Direction)0, EAST
 };
 
-const Direction OPPOSITES[] = {
-    (Direction)0,
-    SOUTH, NORTH, (Direction)0,
-    WEST, (Direction)0, (Direction)0, (Direction)0,
-    EAST
-};
-
-// --- Core Classes ---
-
+// --- 2. CORE DATA STRUCTURES ---
 class Cell {
-private:
-    int row, col, links;
 public:
-    Cell(int r, int c) : row(r), col(c), links(0) {}
-    int getRow() const { return row; }
-    int getCol() const { return col; }
-    bool linked(Direction dir) const { return (links & dir) != 0; }
-    void link(Direction dir) { links |= dir; }
-    std::vector<Direction> getLinks() const {
-        std::vector<Direction> res;
-        if (linked(NORTH)) res.push_back(NORTH);
-        if (linked(SOUTH)) res.push_back(SOUTH);
-        if (linked(EAST)) res.push_back(EAST);
-        if (linked(WEST)) res.push_back(WEST);
-        return res;
-    }
+    int r, c, links = 0;
+    Cell(int row, int col) : r(row), c(col) {}
+    bool linked(Direction d) const { return (links & d) != 0; }
+    void link(Direction d) { links |= d; }
 };
 
 class Grid {
-private:
-    int rows, cols;
-    std::vector<std::vector<Cell>> cells;
-    std::mt19937 rng;
 public:
+    int rows, cols;
+    vector<vector<Cell>> cells;
+    mt19937 rng{unsigned(time(nullptr))};
+
     Grid(int r, int c) : rows(r), cols(c) {
-        rng.seed(static_cast<unsigned int>(std::time(nullptr)));
-        for (int i = 0; i < rows; i++) {
-            std::vector<Cell> row;
-            for (int j = 0; j < cols; j++) row.emplace_back(i, j);
-            cells.push_back(row);
-        }
-    }
-    int getRows() const { return rows; }
-    int getCols() const { return cols; }
-    bool isValid(int r, int c) const { return r >= 0 && r < rows && c >= 0 && c < cols; }
-    Cell& at(int r, int c) { return cells[r][c]; }
-    const Cell& at(int r, int c) const { return cells[r][c]; }
-    int random(int min, int max) { return std::uniform_int_distribution<int>(min, max)(rng); }
-
-    void linkCells(int r1, int c1, Direction dir) {
-        int r2 = r1 + DIRECTION_OFFSETS[dir].second;
-        int c2 = c1 + DIRECTION_OFFSETS[dir].first;
-        if (isValid(r1, c1) && isValid(r2, c2)) {
-            at(r1, c1).link(dir);
-            at(r2, c2).link(OPPOSITES[dir]);
+        for (int i = 0; i < rows; ++i) {
+            vector<Cell> row_vec;
+            for (int j = 0; j < cols; ++j) row_vec.emplace_back(i, j);
+            cells.push_back(row_vec);
         }
     }
 
-    void display(const std::vector<Cell*>& path = {}) const {
-        auto isOnPath = [&](const Cell* c) {
-            for (auto p : path) if (p == c) return true;
+    void link(int r1, int c1, Direction d) {
+        int r2 = r1 + OFFSETS[d].second;
+        int c2 = c1 + OFFSETS[d].first;
+        if (r2 >= 0 && r2 < rows && c2 >= 0 && c2 < cols) {
+            cells[r1][c1].link(d);
+            cells[r2][c2].link(OPPOSITE[d]);
+        }
+    }
+
+    // CLEAN GRID RENDERER
+    void display(const vector<Cell*>& path = {}) const {
+        auto onPath = [&](const Cell* target) {
+            for (auto p : path) if (p == target) return true;
             return false;
         };
 
-        std::cout << "+";
-        for (int c = 0; c < cols; c++) std::cout << "---+";
-        std::cout << "\n";
+        // Render top wall
+        cout << "+";
+        for (int j = 0; j < cols; ++j) cout << "---+";
+        cout << "\n";
 
-        for (int r = 0; r < rows; r++) {
-            std::cout << "|";
-            for (int c = 0; c < cols; c++) {
-                std::cout << (isOnPath(&at(r, c)) ? " X " : "   ");
-                std::cout << (c < cols - 1 && at(r, c).linked(EAST) ? " " : "|");
+        for (int i = 0; i < rows; ++i) {
+            string mid = "|";   // Walls and Path
+            string bottom = "+"; // Floors
+
+            for (int j = 0; j < cols; ++j) {
+                const Cell& cell = cells[i][j];
+                
+                // Path Indicator (centered X)
+                mid += (onPath(&cell) ? " X " : "   ");
+                
+                // East wall logic
+                mid += (cell.linked(EAST) ? " " : "|");
+
+                // South wall logic
+                bottom += (cell.linked(SOUTH) ? "   +" : "---+");
             }
-            std::cout << "\n+";
-            for (int c = 0; c < cols; c++) {
-                std::cout << (r < rows - 1 && at(r, c).linked(SOUTH) ? "   +" : "---++");
-            }
-            std::cout << "\n";
+            cout << mid << "\n" << bottom << "\n";
         }
     }
 };
 
-// --- Algorithm Classes ---
+// --- 3. ALGORITHMS ---
+void binary_tree(Grid& g) {
+    for (int i = 0; i < g.rows; ++i) {
+        for (int j = 0; j < g.cols; ++j) {
+            vector<Direction> neighbors;
+            if (i > 0) neighbors.push_back(NORTH);
+            if (j < g.cols - 1) neighbors.push_back(EAST);
+            
+            if (!neighbors.empty()) {
+                Direction d = neighbors[uniform_int_distribution<int>(0, neighbors.size()-1)(g.rng)];
+                g.link(i, j, d);
+            }
+        }
+    }
+}
 
-class BinaryTreeMaze {
-public:
-    static void generate(Grid& grid) {
-        for (int r = 0; r < grid.getRows(); r++) {
-            for (int c = 0; c < grid.getCols(); c++) {
-                std::vector<Direction> neighbors;
-                if (r > 0) neighbors.push_back(NORTH);
-                if (c < grid.getCols() - 1) neighbors.push_back(EAST);
-                if (!neighbors.empty()) {
-                    grid.linkCells(r, c, neighbors[grid.random(0, neighbors.size() - 1)]);
+// Simplified Dijkstra implementation for the "Solution"
+vector<Cell*> solve(Grid& g) {
+    auto bfs = [&](Cell* start) {
+        map<Cell*, int> dists;
+        queue<Cell*> q;
+        dists[start] = 0;
+        q.push(start);
+        while(!q.empty()){
+            Cell* curr = q.front(); q.pop();
+            for(Direction d : {NORTH, SOUTH, EAST, WEST}){
+                if(curr->linked(d)){
+                    Cell* next = &g.cells[curr->r + OFFSETS[d].second][curr->c + OFFSETS[d].first];
+                    if(dists.find(next) == dists.end()){
+                        dists[next] = dists[curr] + 1;
+                        q.push(next);
+                    }
                 }
             }
         }
-    }
-};
+        return dists;
+    };
 
-class Distances {
-private:
-    std::unordered_map<std::string, int> dists;
-    std::string key(const Cell& c) const { return std::to_string(c.getRow()) + "," + std::to_string(c.getCol()); }
-public:
-    void set(const Cell& c, int d) { dists[key(c)] = d; }
-    int get(const Cell& c) const {
-        auto it = dists.find(key(c));
-        return (it != dists.end()) ? it->second : std::numeric_limits<int>::max();
-    }
-    Cell* getMaxCell(Grid& grid) const {
-        Cell* maxC = &grid.at(0,0);
-        int maxD = -1;
-        for (auto const& [k, v] : dists) {
-            if (v > maxD) {
-                int r = std::stoi(k.substr(0, k.find(',')));
-                int c = std::stoi(k.substr(k.find(',') + 1));
-                maxC = &grid.at(r, c);
-                maxD = v;
+    // Find the longest path (the "ideal" solution)
+    auto d1 = bfs(&g.cells[0][0]);
+    Cell* start_node = max_element(d1.begin(), d1.end(), [](auto& a, auto& b){return a.second < b.second;})->first;
+    auto d2 = bfs(start_node);
+    Cell* end_node = max_element(d2.begin(), d2.end(), [](auto& a, auto& b){return a.second < b.second;})->first;
+
+    // Backtrack to build path
+    vector<Cell*> path;
+    Cell* curr = end_node;
+    while(curr != start_node){
+        path.push_back(curr);
+        for(Direction d : {NORTH, SOUTH, EAST, WEST}){
+            if(curr->linked(d)){
+                Cell* next = &g.cells[curr->r + OFFSETS[d].second][curr->c + OFFSETS[d].first];
+                if(d2[next] < d2[curr]) { curr = next; break; }
             }
         }
-        return maxC;
     }
-};
+    path.push_back(start_node);
+    return path;
+}
 
-class Dijkstra {
-public:
-    static Distances calculate(Grid& grid, Cell& start) {
-        Distances d;
-        d.set(start, 0);
-        std::priority_queue<std::pair<int, Cell*>, std::vector<std::pair<int, Cell*>>, std::greater<>> pq;
-        pq.push({0, &start});
-
-        while (!pq.empty()) {
-            Cell* curr = pq.top().second; pq.pop();
-            for (Direction dir : curr->getLinks()) {
-                Cell& nb = grid.at(curr->getRow() + DIRECTION_OFFSETS[dir].second, curr->getCol() + DIRECTION_OFFSETS[dir].first);
-                int newD = d.get(*curr) + 1;
-                if (newD < d.get(nb)) {
-                    d.set(nb, newD);
-                    pq.push({newD, &nb});
-                }
-            }
-        }
-        return d;
-    }
-
-    static std::vector<Cell*> solve(Grid& grid) {
-        Distances d1 = calculate(grid, grid.at(0, 0));
-        Cell* start = d1.getMaxCell(grid);
-        Distances d2 = calculate(grid, *start);
-        Cell* end = d2.getMaxCell(grid);
-
-        std::vector<Cell*> path;
-        Cell* curr = end;
-        while (curr != start) {
-            path.push_back(curr);
-            for (Direction dir : curr->getLinks()) {
-                Cell& nb = grid.at(curr->getRow() + DIRECTION_OFFSETS[dir].second, curr->getCol() + DIRECTION_OFFSETS[dir].first);
-                if (d2.get(nb) < d2.get(*curr)) { curr = &nb; break; }
-            }
-        }
-        path.push_back(start);
-        return path;
-    }
-};
-
-// --- Main Execution ---
-
-int main(int argc, char* argv[]) {
-    int r = (argc > 1) ? stoi(argv[1]) : 10;
-    int c = (argc > 2) ? stoi(argv[2]) : 10;
-
-    Grid grid(r, c);
-    BinaryTreeMaze::generate(grid);
+// --- 4. MAIN ---
+int main() {
+    // 5x5 is small enough to look perfect in a terminal/GitHub README
+    Grid maze(5, 5); 
+    binary_tree(maze);
+    vector<Cell*> solution = solve(maze);
     
-    std::cout << "Maze with Longest Path Solution:\n";
-    std::vector<Cell*> path = Dijkstra::solve(grid);
-    grid.display(path);
+    cout << "  --- MINI MAZE SOLUTION ---\n";
+    maze.display(solution);
     
-    std::cout << "Path Length: " << path.size() << " cells.\n";
     return 0;
 }
