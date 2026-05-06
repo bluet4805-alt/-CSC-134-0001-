@@ -116,8 +116,8 @@ void exploreForest() {
     cout << "He reaches into his robes and pulls out a shimmering gold pendant." << endl;
     
     systemPrompt("You just picked up a Magic Pendant");
-    cout << "The Wizard smiles. 'This pendant holds the power of the stars. It grants three wishes.'" << endl;
-    cout << "You thank the Wizard and depart the forest, the pendant glowing warmly against your armor." << endl;
+    cout << "The Wizard smiles and hands you a pendant glowing with magic." << endl; 
+    cout << "You thank the Wizard and depart the forest, the treasure glows warmly in your palm." << endl;
 }
 
 // --- STORY AREA 2: THE DISTANT REALM ---
@@ -184,16 +184,16 @@ void exploreRealm() {
         exit(0);
     }
 
-    cout << "\nThe Guardians lower their spears. 'Truth is rare in this world. Follow us.'" << endl;
-    cout << "They lead you to the heart of the realm where the treasure waits." << endl;
-    systemPrompt("You just picked up the Magical Treasure");
+    cout << "\nThe Guardians lower their spears, and bring you to their Captian who holds a sword of light." << endl; 
+    cout << "They lead you to their base and show you how the magical insignia provides energy for their magical armor and weapons." << endl; 
+    systemPrompt("You feel the insignia's magic calling to you.");
 
     cout << "\nOne final test remains. Do you:\n1. Steal the treasure and flee into the night.\n2. Vow to be their ally and protect the peace together." << endl;
     cout << "> ";
     cin >> choice;
 
     if (choice == 1) {
-        systemPrompt("You have gained the most powerful enemies you have ever faced.");
+        systemPrompt("You retun to your home but constantly feel an evil omen coming from the insignia.");
     } else {
         cout << "You return home as a hero with a powerful alliance!" << endl;
     }
