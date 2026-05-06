@@ -1,2 +1,7 @@
 The code is a gameplay of an adventure story. 
-The user can move through oceans and forests as well as make friends or new enemies 
+The user can move through oceans and forests as well as make friends or new enemies.
+
+Process: 
+I adjusted the My Adventure Story and my Palace Map codes to get an draft of the first code 
+I combned the two codes and gave it to Gemini to clean up 
+At the end, I went through the generated code and made some small changes to its flow in order to make it more like the way I had originally drafted. 
